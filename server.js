@@ -10,7 +10,7 @@ const {
 } = process.env
 
 
-const app = express
+const app = express()
 
 // Database Connection //
 const connectDB = async () => {
@@ -38,6 +38,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 
+
 // Auth Middleware //
 // app.use(async function (req, res, next) {
 //   try {
@@ -63,5 +64,7 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
+
 // Listener //
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+
