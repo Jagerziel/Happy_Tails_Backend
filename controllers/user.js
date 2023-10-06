@@ -1,9 +1,9 @@
 const express = require('express');
 const user = express.Router();
 const User = require('../models/userModel.js');
-// const isAuthenticated = require('../utils/isAuth');
+const isAuthenticated = require('../utils/isAuthenticated.js');
 
-user.get('/', async (req, res) => {
+user.get('/', isAuthenticated, async (req, res) => {
   try {
     // console.log('hi')
     if (req.user) {
@@ -17,7 +17,7 @@ user.get('/', async (req, res) => {
   }
 });
 
-user.post('/', async (req, res) => {
+user.post('/',isAuthenticated, async (req, res) => {
   try {
     req.body.uid = req.user.uid;
     const newUser = await User.create(req.body);
@@ -28,7 +28,7 @@ user.post('/', async (req, res) => {
   }
 });
 
-user.put('/', async (req, res) => {
+user.put('/',isAuthenticated, async (req, res) => {
   try {
     const filter = { uid: req.body.uid }; // Filter based on uid
     const update = { $set: req.body }; // Update with the entire req.body content
@@ -41,7 +41,7 @@ user.put('/', async (req, res) => {
   }
 });
 
-user.delete('/:id', async (req, res) => {
+user.delete('/:id', isAuthenticated, async (req, res) => {
   try {
     res.json(await User.findByIdAndRemove(req.params.id));
   } catch (error) {
@@ -49,7 +49,7 @@ user.delete('/:id', async (req, res) => {
   }
 });
 
-user.get('/:id', async (req, res) => {
+user.get('/:id',isAuthenticated,  async (req, res) => {
   try {
     const userUid = req.params.id; // Get the UID from the URL parameter
     const userUser = await User.findOne({ uid: userUid });

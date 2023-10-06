@@ -59,6 +59,16 @@ app.use(express.json());
 //   //in the middleware stack/pipeline/conveyerbelt
 // });
 
+// Controller //
+const userController = require('./controllers/user.js');
+app.use('/user', userController);
+const petController = require('./controllers/pet.js');
+app.use('/pet', petController);
+const vaccinationsController = require('./controllers/vaccinations.js');
+app.use('/vaccinations', vaccinationsController);
+const appointmentController = require('./controllers/appointment.js');
+app.use('/appointment', appointmentController);
+
 // Test Route //
 app.get('/', (req, res) => {
   res.send('Hello World');

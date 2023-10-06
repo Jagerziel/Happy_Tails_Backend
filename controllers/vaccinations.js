@@ -1,9 +1,9 @@
 const express = require('express');
 const vaccinations = express.Router();
 const Vaccinations = require('../models/vaccinationsModel.js');
-// const isAuthenticated = require('../utils/isAuth');
+const isAuthenticated = require('../utils/isAuthenticated.js');
 
-vaccinations.get('/', async (req, res) => {
+vaccinations.get('/', isAuthenticated, async (req, res) => {
   try {
     // console.log('hi')
     if (req.vaccinations) {
@@ -17,7 +17,7 @@ vaccinations.get('/', async (req, res) => {
   }
 });
 
-vaccinations.post('/', async (req, res) => {
+vaccinations.post('/',isAuthenticated, async (req, res) => {
   try {
     req.body.uid = req.vaccinations.uid;
     const newVaccinations = await Vaccinations.create(req.body);
@@ -28,7 +28,7 @@ vaccinations.post('/', async (req, res) => {
   }
 });
 
-vaccinations.put('/', async (req, res) => {
+vaccinations.put('/',isAuthenticated, async (req, res) => {
   try {
     const filter = { uid: req.body.uid }; // Filter based on uid
     const update = { $set: req.body }; // Update with the entire req.body content
@@ -41,7 +41,7 @@ vaccinations.put('/', async (req, res) => {
   }
 });
 
-vaccinations.delete('/:id', async (req, res) => {
+vaccinations.delete('/:id', isAuthenticated, async (req, res) => {
   try {
     res.json(await Vaccinations.findByIdAndRemove(req.params.id));
   } catch (error) {
@@ -49,7 +49,7 @@ vaccinations.delete('/:id', async (req, res) => {
   }
 });
 
-vaccinations.get('/:id', async (req, res) => {
+vaccinations.get('/:id',isAuthenticated,  async (req, res) => {
   try {
     const vaccinationsUid = req.params.id; // Get the UID from the URL parameter
     const vaccinationsVaccinations = await Vaccinations.findOne({ uid: vaccinationsUid });
