@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
   {
-    uid: { type: String },
-    first_name: { type: String },
+    uid: { type: String , require: true},
+    first_name: { type: String, require: true },
     last_name: { type: String },
-    email: { type: String },
+    email: { type: String, require: true  },
     phone: { type: String },
-    password: { type: String },
+    password: { type: String, require: true  },
     address: { type: String },
     state: { type: String },
     city: { type: String },

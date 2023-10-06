@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const AppointmentSchema = new Schema(
   {
-    pid: { type: String },
+    pid: { type: String, require: true },
     type: { type: String },
-    date: { type: String },
+    date: { type: String, require: true },
     time: { type: String },
     status: { type: String },
     notes: { type: String },

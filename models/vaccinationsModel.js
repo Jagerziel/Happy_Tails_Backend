@@ -3,10 +3,11 @@ const Schema = mongoose.Schema;
 
 const VaccinationsSchema = new Schema(
   {
-    pid: { type: String },
-    vaccine: { type: String },
+    pid: { type: String, require: true },
+    vaccine: { type: String, require: true },
     last_vaccine_date: { type: String },
-    expiration_data: { type: String },
+    expiration_data: { type: String, require: true },
+    expiration_data: { type: String, require: true },
   },
   {
     timestamps: true,
