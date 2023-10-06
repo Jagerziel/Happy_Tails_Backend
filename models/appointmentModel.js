@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const AppointmentSchema = new Schema(
   {
-    pid: { type: String, require: true },
+    uid: String,
     type: { type: String },
     date: { type: String, require: true },
     time: { type: String },

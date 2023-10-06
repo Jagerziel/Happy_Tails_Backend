@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const VaccinationsSchema = new Schema(
   {
-    pid: { type: String, require: true },
+    uid: String,
     vaccine: { type: String, require: true },
     last_vaccine_date: { type: String },
     expiration_data: { type: String, require: true },

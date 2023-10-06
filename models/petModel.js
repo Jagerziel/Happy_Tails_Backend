@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const PetSchema = new Schema(
   {
-    uid: { type: String, require: true },
-    pid: { type: String, require: true },
+    uid: String,
     name: { type: String, require: true },
     dob: { type: String },
     breed: { type: String },
