@@ -8,3 +8,6 @@ const {
     PORT = 4000,
     MONGODB_URL,
 } = process.env
+
+
+const app = express
