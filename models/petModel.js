@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { Schema, model } from 'mongoose';
+
 
 const PetSchema = new Schema(
   {
@@ -24,6 +24,6 @@ const PetSchema = new Schema(
   }
 );
 
-const Pet = mongoose.model('Pet', PetSchema);
+const Pet = model("Pet", PetSchema);
 
-module.exports = Pet;
+export default Pet;

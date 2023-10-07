@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { Schema, model } from 'mongoose';
 
 const AppointmentSchema = new Schema(
   {
@@ -14,6 +13,6 @@ const AppointmentSchema = new Schema(
     timestamps: true,
   }
 );
-const Appointment = mongoose.model('Appointment', AppointmentSchema);
+const Appointment = model('Appointment', AppointmentSchema);
 
-module.exports = Appointment;
+export default Appointment;

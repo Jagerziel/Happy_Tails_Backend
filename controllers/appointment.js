@@ -1,9 +1,9 @@
 import { Router } from 'express';
 const appointment = Router();
 import { find, create, findOneAndUpdate, findByIdAndRemove, findOne } from '../models/appointmentModel.js';
-// const isAuthenticated = require('../utils/isAuth');
+const isAuthenticated = require('../utils/isAuth');
 
-appointment.get('/', async (req, res) => {
+appointment.get('/', isAuthenticated, async (req, res) => {
   try {
     // console.log('hi')
     if (req.appointment) {
@@ -17,7 +17,7 @@ appointment.get('/', async (req, res) => {
   }
 });
 
-appointment.post('/', async (req, res) => {
+appointment.post('/', isAuthenticated, async (req, res) => {
   try {
     req.body.uid = req.appointment.uid;
     const newAppointment = await create(req.body);
@@ -28,7 +28,7 @@ appointment.post('/', async (req, res) => {
   }
 });
 
-appointment.put('/', async (req, res) => {
+appointment.put('/', isAuthenticated, async (req, res) => {
   try {
     const filter = { uid: req.body.uid }; // Filter based on uid
     const update = { $set: req.body }; // Update with the entire req.body content
@@ -41,7 +41,7 @@ appointment.put('/', async (req, res) => {
   }
 });
 
-appointment.delete('/:id', async (req, res) => {
+appointment.delete('/:id', isAuthenticated, async (req, res) => {
   try {
     res.json(await findByIdAndRemove(req.params.id));
   } catch (error) {
@@ -49,7 +49,7 @@ appointment.delete('/:id', async (req, res) => {
   }
 });
 
-appointment.get('/:id', async (req, res) => {
+appointment.get('/:id', isAuthenticated, async (req, res) => {
   try {
     const appointmentUid = req.params.id; // Get the UID from the URL parameter
     const appointmentAppointment = await findOne({ uid: appointmentUid });
