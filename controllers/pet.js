@@ -3,7 +3,7 @@ const pet = express.Router();
 const Pet = require('../models/petModel.js');
 const isAuthenticated = require('../utils/isAuthenticated.js');
 
-pet.get('/', isAuthenticated,async (req, res) => {
+pet.get('/', isAuthenticated, async (req, res) => {
   try {
     // console.log('hi')
     if (req.pet) {
@@ -17,7 +17,7 @@ pet.get('/', isAuthenticated,async (req, res) => {
   }
 });
 
-pet.post('/', isAuthenticated,async (req, res) => {
+pet.post('/', isAuthenticated, async (req, res) => {
   try {
     req.body.uid = req.pet.uid;
     const newPet = await Pet.create(req.body);
@@ -28,7 +28,7 @@ pet.post('/', isAuthenticated,async (req, res) => {
   }
 });
 
-pet.put('/',isAuthenticated, async (req, res) => {
+pet.put('/', isAuthenticated, async (req, res) => {
   try {
     const filter = { uid: req.body.uid }; // Filter based on uid
     const update = { $set: req.body }; // Update with the entire req.body content

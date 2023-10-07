@@ -1,15 +1,15 @@
-const express = require('express');
-const vaccinations = express.Router();
-const Vaccinations = require('../models/vaccinationsModel.js');
-const isAuthenticated = require('../utils/isAuthenticated.js');
+import { Router } from 'express';
+const vaccinations = Router();
+import { find, create, findOneAndUpdate, findByIdAndRemove, findOne } from '../models/vaccinationsModel.js';
+import isAuthenticated from '../utils/isAuthenticated.js';
 
 vaccinations.get('/', isAuthenticated, async (req, res) => {
   try {
     // console.log('hi')
     if (req.vaccinations) {
-      res.json(await Vaccinations.find({ uid: req.vaccinations.uid }));
+      res.json(await find({ uid: req.vaccinations.uid }));
     } else {
-      res.json(await Vaccinations.find({ uid: null }));
+      res.json(await find({ uid: null }));
     }
   } catch (error) {
     console.log(error);
@@ -20,7 +20,7 @@ vaccinations.get('/', isAuthenticated, async (req, res) => {
 vaccinations.post('/',isAuthenticated, async (req, res) => {
   try {
     req.body.uid = req.vaccinations.uid;
-    const newVaccinations = await Vaccinations.create(req.body);
+    const newVaccinations = await create(req.body);
     res.json(newVaccinations);
   } catch (error) {
     console.log(error);
@@ -34,7 +34,7 @@ vaccinations.put('/',isAuthenticated, async (req, res) => {
     const update = { $set: req.body }; // Update with the entire req.body content
     const options = { new: true };
 
-    const updatedVaccinations = await Vaccinations.findOneAndUpdate(filter, update, options);
+    const updatedVaccinations = await findOneAndUpdate(filter, update, options);
     res.json(updatedVaccinations);
   } catch (error) {
     res.status(400).json(error);
@@ -43,7 +43,7 @@ vaccinations.put('/',isAuthenticated, async (req, res) => {
 
 vaccinations.delete('/:id', isAuthenticated, async (req, res) => {
   try {
-    res.json(await Vaccinations.findByIdAndRemove(req.params.id));
+    res.json(await findByIdAndRemove(req.params.id));
   } catch (error) {
     res.status(400).json(error);
   }
@@ -52,7 +52,7 @@ vaccinations.delete('/:id', isAuthenticated, async (req, res) => {
 vaccinations.get('/:id',isAuthenticated,  async (req, res) => {
   try {
     const vaccinationsUid = req.params.id; // Get the UID from the URL parameter
-    const vaccinationsVaccinations = await Vaccinations.findOne({ uid: vaccinationsUid });
+    const vaccinationsVaccinations = await findOne({ uid: vaccinationsUid });
 
     if (vaccinationsVaccinations) {
       res.json({ exists: true }); // Send true response if vaccinations data exists
@@ -65,4 +65,4 @@ vaccinations.get('/:id',isAuthenticated,  async (req, res) => {
   }
 });
 
-module.exports = vaccinations;
+export default vaccinations;
