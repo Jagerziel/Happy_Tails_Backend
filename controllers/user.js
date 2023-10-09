@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const user = Router();
-import { find, create, findOneAndUpdate, findByIdAndRemove, findOne } from '../models/userModel.js';
+import User from '../models/userModel.js';
 import isAuthenticated from '../utils/isAuthenticated.js';
 
 user.get('/', isAuthenticated, async (req, res) => {

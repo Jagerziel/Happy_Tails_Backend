@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const vaccinations = Router();
-import { find, create, findOneAndUpdate, findByIdAndRemove, findOne } from '../models/vaccinationsModel.js';
+import Vaccinations from '../models/vaccinationsModel.js';
 import isAuthenticated from '../utils/isAuthenticated.js';
 
 vaccinations.get('/', isAuthenticated, async (req, res) => {

@@ -1,7 +1,8 @@
 import { Router } from 'express';
 const appointment = Router();
-import { find, create, findOneAndUpdate, findByIdAndRemove, findOne } from '../models/appointmentModel.js';
-const isAuthenticated = require('../utils/isAuth');
+import Appointment from '../models/appointmentModel.js';
+import isAuthenticated from '../utils/isAuthenticated.js';
+
 
 appointment.get('/', isAuthenticated, async (req, res) => {
   try {
