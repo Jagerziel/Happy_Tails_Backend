@@ -83,10 +83,14 @@ app.use(express.json());
 // });
 
 // Controller //
-// const sampleController = require('./controllers/sample');
-// app.use('/test', sampleController);
-// const infoController = require('./controllers/info');
-// app.use('/info', infoController);
+import userController from './controllers/user.js';
+app.use('/user', userController);
+import petController from './controllers/pet.js';
+app.use('/pet', petController);
+import vaccinationsController from './controllers/vaccinations.js';
+app.use('/vaccinations', vaccinationsController);
+import appointmentController from './controllers/appointment.js';
+app.use('/appointment', appointmentController);
 
 // Test Route //
 app.get('/', (req, res) => {

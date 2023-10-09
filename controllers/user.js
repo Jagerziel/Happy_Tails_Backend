@@ -7,9 +7,9 @@ user.get('/', isAuthenticated, async (req, res) => {
   try {
     // console.log('hi')
     if (req.user) {
-      res.json(await find({ uid: req.user.uid }));
+      res.json(await User.find({ uid: req.user.uid }));
     } else {
-      res.json(await find({ uid: null }));
+      res.json(await User.find({ uid: null }));
     }
   } catch (error) {
     console.log(error);
@@ -20,7 +20,7 @@ user.get('/', isAuthenticated, async (req, res) => {
 user.post('/',isAuthenticated, async (req, res) => {
   try {
     req.body.uid = req.user.uid;
-    const newUser = await create(req.body);
+    const newUser = await User.create(req.body);
     res.json(newUser);
   } catch (error) {
     console.log(error);
@@ -34,7 +34,7 @@ user.put('/',isAuthenticated, async (req, res) => {
     const update = { $set: req.body }; // Update with the entire req.body content
     const options = { new: true };
 
-    const updatedUser = await findOneAndUpdate(filter, update, options);
+    const updatedUser = await User.findOneAndUpdate(filter, update, options);
     res.json(updatedUser);
   } catch (error) {
     res.status(400).json(error);
@@ -43,7 +43,7 @@ user.put('/',isAuthenticated, async (req, res) => {
 
 user.delete('/:id', isAuthenticated, async (req, res) => {
   try {
-    res.json(await findByIdAndRemove(req.params.id));
+    res.json(await User.findByIdAndRemove(req.params.id));
   } catch (error) {
     res.status(400).json(error);
   }
@@ -52,7 +52,7 @@ user.delete('/:id', isAuthenticated, async (req, res) => {
 user.get('/:id',isAuthenticated,  async (req, res) => {
   try {
     const userUid = req.params.id; // Get the UID from the URL parameter
-    const userUser = await findOne({ uid: userUid });
+    const userUser = await User.findOne({ uid: userUid });
 
     if (userUser) {
       res.json({ exists: true }); // Send true response if user data exists
