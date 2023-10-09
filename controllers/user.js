@@ -19,7 +19,7 @@ user.get('/', isAuthenticated, async (req, res) => {
 
 user.post('/',isAuthenticated, async (req, res) => {
   try {
-    req.body.uid = req.user.uid;
+    // req.body.uid = req.user.uid;
     const newUser = await User.create(req.body);
     res.json(newUser);
   } catch (error) {

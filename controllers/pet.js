@@ -19,7 +19,7 @@ pet.get("/", isAuthenticated, async (req, res) => {
 
 pet.post("/", isAuthenticated, async (req, res) => {
   try {
-    req.body.uid = req.pet.uid;
+    // req.body.uid = req.pet.uid;
     const newPet = await Pet.create(req.body);
     res.json(newPet);
   } catch (error) {

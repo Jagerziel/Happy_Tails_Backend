@@ -20,7 +20,7 @@ appointment.get('/', isAuthenticated, async (req, res) => {
 
 appointment.post('/', isAuthenticated, async (req, res) => {
   try {
-    req.body.uid = req.appointment.uid;
+    // req.body.uid = req.appointment.uid;
     const newAppointment = await Appointment.create(req.body);
     res.json(newAppointment);
   } catch (error) {

@@ -5,8 +5,7 @@ const VaccinationsSchema = new Schema(
     uid: String,
     vaccine: { type: String, require: true },
     last_vaccine_date: { type: String },
-    expiration_data: { type: String, require: true },
-    expiration_data: { type: String, require: true },
+    expiration_date: { type: String, require: true },
   },
   {
     timestamps: true,

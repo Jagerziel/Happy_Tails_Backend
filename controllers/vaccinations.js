@@ -19,7 +19,7 @@ vaccinations.get('/', isAuthenticated, async (req, res) => {
 
 vaccinations.post('/',isAuthenticated, async (req, res) => {
   try {
-    req.body.uid = req.vaccinations.uid;
+    // req.body.uid = req.vaccinations.uid;
     const newVaccinations = await Vaccinations.create(req.body);
     res.json(newVaccinations);
   } catch (error) {
