@@ -28,7 +28,7 @@ pet.post("/", isAuthenticated, async (req, res) => {
   }
 });
 
-pet.put("/", isAuthenticated, async (req, res) => {
+pet.put("/:id", isAuthenticated, async (req, res) => {
   try {
     const filter = { uid: req.body.uid }; // Filter based on uid
     const update = { $set: req.body }; // Update with the entire req.body content
