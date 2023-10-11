@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, model } from 'mongoose';
 
 const VaccinationsSchema = new Schema(
   {
@@ -6,6 +6,10 @@ const VaccinationsSchema = new Schema(
     vaccine: { type: String, require: true },
     last_vaccine_date: { type: String },
     expiration_date: { type: String, require: true },
+    pet_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Pet',
+    }
   },
   {
     timestamps: true,
