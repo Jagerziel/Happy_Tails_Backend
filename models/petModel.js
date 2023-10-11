@@ -5,6 +5,7 @@ const PetSchema = new Schema(
   {
     uid: String,
     name: { type: String, require: true },
+    type: { type: String, require: true },
     dob: { type: String },
     breed: { type: String },
     image: { type: String },
