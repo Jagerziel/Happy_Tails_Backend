@@ -28,7 +28,7 @@ vaccinations.post('/',isAuthenticated, async (req, res) => {
   }
 });
 
-vaccinations.put('/',isAuthenticated, async (req, res) => {
+vaccinations.put('/:id',isAuthenticated, async (req, res) => {
   try {
     const filter = { uid: req.body.uid }; // Filter based on uid
     const update = { $set: req.body }; // Update with the entire req.body content
