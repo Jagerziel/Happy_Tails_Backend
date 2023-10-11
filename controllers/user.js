@@ -28,9 +28,9 @@ user.post('/',isAuthenticated, async (req, res) => {
   }
 });
 
-user.put('/',isAuthenticated, async (req, res) => {
+user.put('/:id',isAuthenticated, async (req, res) => {
   try {
-    const filter = { uid: req.body.uid }; // Filter based on uid
+    const filter = { uid: req.params.uid }; // Filter based on uid
     const update = { $set: req.body }; // Update with the entire req.body content
     const options = { new: true };
 
