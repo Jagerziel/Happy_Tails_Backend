@@ -1,6 +1,5 @@
 import { Schema, model } from 'mongoose';
 
-
 const PetSchema = new Schema(
   {
     uid: String,
@@ -19,6 +18,11 @@ const PetSchema = new Schema(
     primary_color: { type: String },
     notes: { type: String },
     primary_vet: { type: String },
+
+    user_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    },
   },
   {
     timestamps: true,
@@ -26,5 +30,4 @@ const PetSchema = new Schema(
 );
 
 const Pet = model("Pet", PetSchema);
-
 export default Pet;
