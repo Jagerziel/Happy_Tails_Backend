@@ -14,6 +14,8 @@ const UserSchema = new Schema(
     zip: { type: String },
     ec_name: { type: String },
     ec_phone: { type: String },
+    ec_relationship: { type: String },
+    ec_notes: { type: String },
     image: { type: String },
   },
   {
