@@ -5,7 +5,7 @@ const UserSchema = new Schema(
     uid: String,
     first_name: { type: String, require: true },
     last_name: { type: String },
-    email: { type: String, require: true  },
+    email: { type: String, require: true, unique: true  },
     phone: { type: String },
     password: { type: String, require: true  },
     address: { type: String },
@@ -14,6 +14,8 @@ const UserSchema = new Schema(
     zip: { type: String },
     ec_name: { type: String },
     ec_phone: { type: String },
+    ec_relationship: { type: String },
+    ec_notes: { type: String },
     image: { type: String },
   },
   {
