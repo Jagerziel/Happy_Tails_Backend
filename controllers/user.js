@@ -75,13 +75,14 @@ user.get('/email/:email',isAuthenticated,  async (req, res) => {
     // const userUid = req.params.id; // Get the UID from the URL parameter
     // const userUser = await User.findOne({ uid: userUid });
 
-    // if (userUser) {
-    //   res.json({ exists: true }); // Send true response if user data exists
-    // } else {
-    //   res.json({}); // Send false response if user data doesn't exist
-    // }
+    const emailExists = await User.findOne({"email": req.params.email})
+    if (emailExists) {
+      res.json([{ exists: true }, emailExists]); // Send true response if user data exists
+    } else {
+      res.json([{ exists: false }]); // Send false response if user data doesn't exist
+    }
 
-    res.json(await User.findOne({"email": req.params.email}));
+    // res.json(await User.findOne({"email": req.params.email}));
 
 
   } catch (error) {
