@@ -39,7 +39,9 @@ const app = express();
 // Database Connection //
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(MONGODB_URL);
+    const mongooseConnectionConfig = { useNewUrlParser: true, useUnifiedTopology: true}
+    mongoose.set('strictQuery', true)
+    const conn = await mongoose.connect(MONGODB_URL, mongooseConnectionConfig);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.log(error);
@@ -85,6 +87,8 @@ app.use(express.json());
 // Controller //
 import userController from './controllers/user.js';
 app.use('/user', userController);
+app.use('/user/id', userController);
+app.use('/user/email', userController);
 import petController from './controllers/pet.js';
 app.use('/pet', petController);
 import vaccinationsController from './controllers/vaccinations.js';
@@ -94,7 +98,7 @@ app.use('/appointment', appointmentController);
 
 // Test Route //
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.send('Main Page - Testing');
 });
 
 // Listener //
