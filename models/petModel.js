@@ -18,7 +18,6 @@ const PetSchema = new Schema(
     primary_color: { type: String },
     notes: { type: String },
     primary_vet: { type: String },
-
     user_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
