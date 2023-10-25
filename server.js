@@ -87,7 +87,6 @@ app.use(express.json());
 // Controller //
 import userController from './controllers/user.js';
 app.use('/user', userController);
-app.use('/user/id', userController);
 app.use('/user/email', userController);
 import petController from './controllers/pet.js';
 app.use('/pet', petController);

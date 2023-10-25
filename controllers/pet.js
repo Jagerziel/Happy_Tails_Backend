@@ -2,14 +2,28 @@ import { Router } from "express";
 const pet = Router();
 import Pet from "../models/petModel.js";
 import isAuthenticated from "../utils/isAuthenticated.js";
+import { ObjectId } from "mongodb";
 
 pet.get("/", isAuthenticated, async (req, res) => {
   try {
-    // console.log('hi')
     if (req.pet) {
-      res.json(await Pet.find({ uid: req.pet.uid }));
+      res.json(await Pet.find({ uid: req.pet.uid  }));
     } else {
       res.json(await Pet.find({ uid: null }));
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Failed to get data" });
+  }
+});
+
+pet.get("/:id", isAuthenticated, async (req, res) => {
+  try {
+    console.log('hi')
+    if (req.pet) {
+      res.json(await Pet.find({ user_id: ObjectId(req.params.id) }));
+    } else {
+      res.json(await Pet.find({ user_id: null }));
     }
   } catch (error) {
     console.log(error);
@@ -49,20 +63,20 @@ pet.delete("/:id", isAuthenticated, async (req, res) => {
   }
 });
 
-pet.get("/:id", isAuthenticated, async (req, res) => {
-  try {
-    const petUid = req.params.id; // Get the UID from the URL parameter
-    const petPet = await Pet.findOne({ uid: petUid });
+// pet.get("/:id", isAuthenticated, async (req, res) => {
+//   try {
+//     const petUid = req.params.id; // Get the UID from the URL parameter
+//     const petPet = await Pet.findOne({ uid: petUid });
 
-    if (petPet) {
-      res.json({ exists: true }); // Send true response if pet data exists
-    } else {
-      res.json({}); // Send false response if pet data doesn't exist
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(400).json(error);
-  }
-});
+//     if (petPet) {
+//       res.json({ exists: true }); // Send true response if pet data exists
+//     } else {
+//       res.json({}); // Send false response if pet data doesn't exist
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     res.status(400).json(error);
+//   }
+// });
 
 export default pet;

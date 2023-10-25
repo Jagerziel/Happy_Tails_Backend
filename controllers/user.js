@@ -50,7 +50,7 @@ user.delete('/:id', isAuthenticated, async (req, res) => {
   }
 });
 
-user.get('/id/:id',isAuthenticated,  async (req, res) => {
+user.get('/:id',isAuthenticated,  async (req, res) => {
   try {
     // const userUid = req.params.id; // Get the UID from the URL parameter
     // const userUser = await User.findOne({ uid: userUid });
@@ -90,8 +90,5 @@ user.get('/email/:email',isAuthenticated,  async (req, res) => {
     res.status(400).json(error);
   }
 });
-
-
-
 
 export default user;
