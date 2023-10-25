@@ -3,19 +3,20 @@ const vaccinations = Router();
 import Vaccinations from '../models/vaccinationsModel.js';
 import isAuthenticated from '../utils/isAuthenticated.js';
 
+// Get All Vaccinations
 vaccinations.get('/', isAuthenticated, async (req, res) => {
   try {
-    // console.log('hi')
-    if (req.vaccinations) {
-      res.json(await Vaccinations.find({ uid: req.vaccinations.uid }));
-    } else {
-      res.json(await Vaccinations.find({ uid: null }));
-    }
+    res.json(await Vaccinations.find());
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Failed to get data' });
   }
 });
+
+
+
+
+
 
 vaccinations.post('/',isAuthenticated, async (req, res) => {
   try {
