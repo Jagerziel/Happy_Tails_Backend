@@ -29,14 +29,9 @@ appointment.get('/user/:user_id', isAuthenticated, async (req, res) => {
 });
 
 // Get all by Pet ID
-appointment.get('/pet_id/:pet_id', isAuthenticated, async (req, res) => {
+appointment.get('/pet/:pet_id', isAuthenticated, async (req, res) => {
   try {
-    // console.log('hi')
-    if (req.appointment) {
-      res.json(await Appointment.find({ uid: req.appointment.uid }));
-    } else {
-      res.json(await Appointment.find({ uid: null }));
-    }
+    res.json(await Appointment.find({"pet_id": req.params.pet_id }));
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Failed to get data' });

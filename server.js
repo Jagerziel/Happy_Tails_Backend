@@ -88,14 +88,19 @@ app.use(express.json());
 import userController from './controllers/user.js';
 app.use('/user', userController);
 app.use('/user/email', userController);
+
 import petController from './controllers/pet.js';
 app.use('/pet', petController);
 app.use('/pet/user', petController);
 app.use('/pet/pet', petController);
+
 import vaccinationsController from './controllers/vaccinations.js';
 app.use('/vaccinations', vaccinationsController);
+
 import appointmentController from './controllers/appointment.js';
 app.use('/appointment', appointmentController);
+app.use('/appointment/user', appointmentController);
+app.use('/appointment/pet', appointmentController);
 
 // Test Route //
 app.get('/', (req, res) => {
