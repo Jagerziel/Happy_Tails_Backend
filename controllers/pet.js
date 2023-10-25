@@ -20,11 +20,8 @@ pet.get("/", isAuthenticated, async (req, res) => {
 pet.get("/:id", isAuthenticated, async (req, res) => {
   try {
     console.log('hi')
-    if (req.pet) {
-      res.json(await Pet.find({ user_id: ObjectId(req.params.id) }));
-    } else {
-      res.json(await Pet.find({ user_id: null }));
-    }
+    res.json(await Pet.find({ "user_id": req.params.id }));
+
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Failed to get data" });
