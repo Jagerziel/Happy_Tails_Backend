@@ -3,6 +3,7 @@ const pet = Router();
 import Pet from "../models/petModel.js";
 import isAuthenticated from "../utils/isAuthenticated.js";
 
+// Get All Pets
 pet.get("/", isAuthenticated, async (req, res) => {
   try {
     res.json(await Pet.find());
@@ -12,6 +13,7 @@ pet.get("/", isAuthenticated, async (req, res) => {
   }
 });
 
+// Get All Pets of a Specific User
 pet.get("/:user_id", isAuthenticated, async (req, res) => {
   try {
     res.json(await Pet.find({ "user_id": req.params.user_id }));
@@ -21,6 +23,7 @@ pet.get("/:user_id", isAuthenticated, async (req, res) => {
   }
 });
 
+// Add New Pet
 pet.post("/", isAuthenticated, async (req, res) => {
   try {
     const newPet = await Pet.create(req.body);
@@ -31,6 +34,7 @@ pet.post("/", isAuthenticated, async (req, res) => {
   }
 });
 
+// Edit Existing Pet
 pet.put("/:id", isAuthenticated, async (req, res) => {
   try {
     const filter = { uid: req.body.uid }; // Filter based on uid
@@ -44,6 +48,7 @@ pet.put("/:id", isAuthenticated, async (req, res) => {
   }
 });
 
+// Delete a Pet
 pet.delete("/:id", isAuthenticated, async (req, res) => {
   try {
     res.json(await Pet.findByIdAndRemove(req.params.id));

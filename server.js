@@ -96,6 +96,8 @@ app.use('/pet/pet', petController);
 
 import vaccinationsController from './controllers/vaccinations.js';
 app.use('/vaccinations', vaccinationsController);
+app.use('/vaccinations/user', vaccinationsController);
+app.use('/vaccinations/pet', vaccinationsController);
 
 import appointmentController from './controllers/appointment.js';
 app.use('/appointment', appointmentController);

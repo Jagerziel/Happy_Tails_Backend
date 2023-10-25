@@ -3,7 +3,7 @@ const appointment = Router();
 import Appointment from '../models/appointmentModel.js';
 import isAuthenticated from '../utils/isAuthenticated.js';
 
-// Get all
+// Get All Appointments
 appointment.get('/', isAuthenticated, async (req, res) => {
   try {
     // console.log('hi')
@@ -18,7 +18,7 @@ appointment.get('/', isAuthenticated, async (req, res) => {
   }
 });
 
-// Get all by User ID
+// Get All Appointments by User ID
 appointment.get('/user/:user_id', isAuthenticated, async (req, res) => {
   try {
     res.json(await Appointment.find({ "user_id": req.params.user_id }));
@@ -28,7 +28,7 @@ appointment.get('/user/:user_id', isAuthenticated, async (req, res) => {
   }
 });
 
-// Get all by Pet ID
+// Get All Appointments by Pet ID
 appointment.get('/pet/:pet_id', isAuthenticated, async (req, res) => {
   try {
     res.json(await Appointment.find({"pet_id": req.params.pet_id }));
@@ -38,6 +38,7 @@ appointment.get('/pet/:pet_id', isAuthenticated, async (req, res) => {
   }
 });
 
+// Add a New Appointment
 appointment.post('/', isAuthenticated, async (req, res) => {
   try {
     // req.body.uid = req.appointment.uid;
@@ -49,6 +50,7 @@ appointment.post('/', isAuthenticated, async (req, res) => {
   }
 });
 
+// Edit an Existing Appointment
 appointment.put('/:id', isAuthenticated, async (req, res) => {
   try {
     const filter = { uid: req.body.uid }; // Filter based on uid
@@ -62,6 +64,7 @@ appointment.put('/:id', isAuthenticated, async (req, res) => {
   }
 });
 
+// Delete an Appointment
 appointment.delete('/:id', isAuthenticated, async (req, res) => {
   try {
     res.json(await Appointment.findByIdAndRemove(req.params.id));
