@@ -44,6 +44,7 @@ vaccinations.post('/',isAuthenticated, async (req, res) => {
   }
 });
 
+// Edit Existing Vaccination Entry
 vaccinations.put('/:id',isAuthenticated, async (req, res) => {
   try {
     const filter = { uid: req.body.uid }; // Filter based on uid
@@ -57,6 +58,7 @@ vaccinations.put('/:id',isAuthenticated, async (req, res) => {
   }
 });
 
+// Delete a Vaccination Entry
 vaccinations.delete('/:id', isAuthenticated, async (req, res) => {
   try {
     res.json(await Vaccinations.findByIdAndRemove(req.params.id));
