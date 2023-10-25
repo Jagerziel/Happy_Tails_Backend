@@ -90,6 +90,8 @@ app.use('/user', userController);
 app.use('/user/email', userController);
 import petController from './controllers/pet.js';
 app.use('/pet', petController);
+app.use('/pet/user', petController);
+app.use('/pet/pet', petController);
 import vaccinationsController from './controllers/vaccinations.js';
 app.use('/vaccinations', vaccinationsController);
 import appointmentController from './controllers/appointment.js';

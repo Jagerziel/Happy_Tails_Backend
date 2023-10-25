@@ -3,8 +3,33 @@ const appointment = Router();
 import Appointment from '../models/appointmentModel.js';
 import isAuthenticated from '../utils/isAuthenticated.js';
 
-
+// Get all
 appointment.get('/', isAuthenticated, async (req, res) => {
+  try {
+    // console.log('hi')
+    if (req.appointment) {
+      res.json(await Appointment.find({ uid: req.appointment.uid }));
+    } else {
+      res.json(await Appointment.find({ uid: null }));
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Failed to get data' });
+  }
+});
+
+// Get all by User ID
+appointment.get('/user/:user_id', isAuthenticated, async (req, res) => {
+  try {
+    res.json(await Appointment.find({ "user_id": req.params.user_id }));
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Failed to get data' });
+  }
+});
+
+// Get all by Pet ID
+appointment.get('/pet_id/:pet_id', isAuthenticated, async (req, res) => {
   try {
     // console.log('hi')
     if (req.appointment) {
@@ -46,22 +71,6 @@ appointment.delete('/:id', isAuthenticated, async (req, res) => {
   try {
     res.json(await Appointment.findByIdAndRemove(req.params.id));
   } catch (error) {
-    res.status(400).json(error);
-  }
-});
-
-appointment.get('/:id', isAuthenticated, async (req, res) => {
-  try {
-    const appointmentUid = req.params.id; // Get the UID from the URL parameter
-    const appointmentAppointment = await Appointment.findOne({ uid: appointmentUid });
-
-    if (appointmentAppointment) {
-      res.json({ exists: true }); // Send true response if appointment data exists
-    } else {
-      res.json({}); // Send false response if appointment data doesn't exist
-    }
-  } catch (error) {
-    console.log(error);
     res.status(400).json(error);
   }
 });
