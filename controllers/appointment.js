@@ -3,7 +3,7 @@ const appointment = Router();
 import Appointment from '../models/appointmentModel.js';
 import isAuthenticated from '../utils/isAuthenticated.js';
 
-
+// Get All Appointments
 appointment.get('/', isAuthenticated, async (req, res) => {
   try {
     // console.log('hi')
@@ -18,6 +18,27 @@ appointment.get('/', isAuthenticated, async (req, res) => {
   }
 });
 
+// Get All Appointments by User ID
+appointment.get('/user/:user_id', isAuthenticated, async (req, res) => {
+  try {
+    res.json(await Appointment.find({ "user_id": req.params.user_id }));
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Failed to get data' });
+  }
+});
+
+// Get All Appointments by Pet ID
+appointment.get('/pet/:pet_id', isAuthenticated, async (req, res) => {
+  try {
+    res.json(await Appointment.find({"pet_id": req.params.pet_id }));
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Failed to get data' });
+  }
+});
+
+// Add a New Appointment
 appointment.post('/', isAuthenticated, async (req, res) => {
   try {
     // req.body.uid = req.appointment.uid;
@@ -29,6 +50,7 @@ appointment.post('/', isAuthenticated, async (req, res) => {
   }
 });
 
+// Edit an Existing Appointment
 appointment.put('/:id', isAuthenticated, async (req, res) => {
   try {
     const filter = { uid: req.body.uid }; // Filter based on uid
@@ -42,26 +64,11 @@ appointment.put('/:id', isAuthenticated, async (req, res) => {
   }
 });
 
+// Delete an Appointment
 appointment.delete('/:id', isAuthenticated, async (req, res) => {
   try {
     res.json(await Appointment.findByIdAndRemove(req.params.id));
   } catch (error) {
-    res.status(400).json(error);
-  }
-});
-
-appointment.get('/:id', isAuthenticated, async (req, res) => {
-  try {
-    const appointmentUid = req.params.id; // Get the UID from the URL parameter
-    const appointmentAppointment = await Appointment.findOne({ uid: appointmentUid });
-
-    if (appointmentAppointment) {
-      res.json({ exists: true }); // Send true response if appointment data exists
-    } else {
-      res.json({}); // Send false response if appointment data doesn't exist
-    }
-  } catch (error) {
-    console.log(error);
     res.status(400).json(error);
   }
 });

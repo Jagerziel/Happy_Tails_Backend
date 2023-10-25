@@ -8,6 +8,10 @@ const AppointmentSchema = new Schema(
     time: { type: String },
     status: { type: String },
     notes: { type: String },
+    user_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    },
     pet_id: {
         type: Schema.Types.ObjectId,
         ref: 'Pet',
