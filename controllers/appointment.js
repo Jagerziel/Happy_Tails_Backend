@@ -6,12 +6,7 @@ import isAuthenticated from '../utils/isAuthenticated.js';
 // Get All Appointments
 appointment.get('/', isAuthenticated, async (req, res) => {
   try {
-    // console.log('hi')
-    if (req.appointment) {
-      res.json(await Appointment.find({ uid: req.appointment.uid }));
-    } else {
-      res.json(await Appointment.find({ uid: null }));
-    }
+    res.json(await Appointment.find());
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Failed to get data' });
@@ -41,7 +36,6 @@ appointment.get('/pet/:pet_id', isAuthenticated, async (req, res) => {
 // Add a New Appointment
 appointment.post('/', isAuthenticated, async (req, res) => {
   try {
-    // req.body.uid = req.appointment.uid;
     const newAppointment = await Appointment.create(req.body);
     res.json(newAppointment);
   } catch (error) {
@@ -53,11 +47,7 @@ appointment.post('/', isAuthenticated, async (req, res) => {
 // Edit an Existing Appointment
 appointment.put('/:id', isAuthenticated, async (req, res) => {
   try {
-    const filter = { uid: req.body.uid }; // Filter based on uid
-    const update = { $set: req.body }; // Update with the entire req.body content
-    const options = { new: true };
-
-    const updatedAppointment = await Appointment.findOneAndUpdate(filter, update, options);
+    const updatedAppointment = await Appointment.findOneAndUpdate({_id: req.params.id}, req.body, {new: true});
     res.json(updatedAppointment);
   } catch (error) {
     res.status(400).json(error);
