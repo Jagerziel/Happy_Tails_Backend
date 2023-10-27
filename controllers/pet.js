@@ -37,11 +37,7 @@ pet.post("/", isAuthenticated, async (req, res) => {
 // Edit Existing Pet
 pet.put("/:id", isAuthenticated, async (req, res) => {
   try {
-    const filter = { uid: req.body.uid }; // Filter based on uid
-    const update = { $set: req.body }; // Update with the entire req.body content
-    const options = { new: true };
-
-    const updatedPet = await Pet.findOneAndUpdate(filter, update, options);
+    const updatedPet = await Pet.findOneAndUpdate({_id: req.params.id}, req.body, {new: true});
     res.json(updatedPet);
   } catch (error) {
     res.status(400).json(error);

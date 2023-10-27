@@ -7,11 +7,7 @@ import { ObjectId } from 'mongodb';
 // Get All Users
 user.get('/', isAuthenticated, async (req, res) => {
   try {
-    if (req.user) {
-      res.json(await User.find({ uid: req.user.uid }));
-    } else {
-      res.json(await User.find({ uid: null }));
-    }
+    res.json(await User.find());
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Failed to get data' });
