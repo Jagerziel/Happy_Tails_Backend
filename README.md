@@ -26,8 +26,8 @@ The Happy Tails backend was constructed using Mongo DB.  The following were key 
 The following Models were constructed for use on the frontend:
  - **User**: This model includes both the user information along with the user's emergency contact information.  A separate model was not used for emergency contact since the limit is 1.  The controller for this model also allows for checks of existing emails associated with the user to ensure this field is unique and duplicate accounts are not created.
  - **Pet**: The pet model contains the details for each individual pet.  It is then mapped to a `user_id`.  
- - **Appointment**: This model contains appointment details for a pet.  The model includes both the `pet_id` and the `user_id`, allowing the information to be pulled from either id.
- - **Vaccination**: Vaccination details are stored in this model.  The model includes both the `pet_id` and the `user_id`, allowing the information to be pulled from either id.
+ - **Appointment**: This model contains appointment details for a pet.  The model includes both the `pet_id` and the `user_id`, allowing the information to be pulled from either id.  The same allows for deletion of all records under either id.
+ - **Vaccination**: Vaccination details are stored in this model.  The model includes both the `pet_id` and the `user_id`, allowing the information to be pulled from either id. The same allows for deletion of all records under either id.
 
 ## Dependencies
 

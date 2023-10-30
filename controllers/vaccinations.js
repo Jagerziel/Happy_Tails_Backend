@@ -81,8 +81,4 @@ vaccinations.delete('/pet/:id', isAuthenticated, async (req, res) => {
   }
 });
 
-
-
-
-
 export default vaccinations;
