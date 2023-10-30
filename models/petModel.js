@@ -14,6 +14,7 @@ const PetSchema = new Schema(
     medications: { type: String },
     laboratory: { type: String },
     microchip: { type: String },
+    spayed: { type: String },
     visit_history: { type: String },
     primary_color: { type: String },
     notes: { type: String },
