@@ -87,22 +87,22 @@ app.use(express.json());
 // Controller //
 import userController from './controllers/user.js';
 app.use('/user', userController);
-app.use('/user/email', userController);
+// app.use('/user/email', userController);
 
 import petController from './controllers/pet.js';
 app.use('/pet', petController);
-app.use('/pet/user', petController);
-app.use('/pet/pet', petController);
+// app.use('/pet/user', petController);
+
 
 import vaccinationsController from './controllers/vaccinations.js';
 app.use('/vaccinations', vaccinationsController);
-app.use('/vaccinations/user', vaccinationsController);
-app.use('/vaccinations/pet', vaccinationsController);
+// app.use('/vaccinations/user', vaccinationsController);
+// app.use('/vaccinations/pet', vaccinationsController);
 
 import appointmentController from './controllers/appointment.js';
 app.use('/appointment', appointmentController);
-app.use('/appointment/user', appointmentController);
-app.use('/appointment/pet', appointmentController);
+// app.use('/appointment/user', appointmentController);
+// app.use('/appointment/pet', appointmentController);
 
 // Test Route //
 app.get('/', (req, res) => {

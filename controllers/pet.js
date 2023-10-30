@@ -14,12 +14,12 @@ pet.get("/", isAuthenticated, async (req, res) => {
 });
 
 // Get All Pets of a Specific User
-pet.get("/:user_id", isAuthenticated, async (req, res) => {
+pet.get("/user/:user_id", isAuthenticated, async (req, res) => {
   try {
     res.json(await Pet.find({ "user_id": req.params.user_id }));
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "Failed to get data" });
+    res.status(500).json({ error: "Failed to get Pet data by User" });
   }
 });
 
@@ -48,6 +48,15 @@ pet.put("/:id", isAuthenticated, async (req, res) => {
 pet.delete("/:id", isAuthenticated, async (req, res) => {
   try {
     res.json(await Pet.findByIdAndRemove(req.params.id));
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
+// Delete an All Vaccinations By User ID
+pet.delete('/user/:id', isAuthenticated, async (req, res) => {
+  try {
+    res.json(await vaccinations.deleteMany({"user_id": req.params.id}));
   } catch (error) {
     res.status(400).json(error);
   }

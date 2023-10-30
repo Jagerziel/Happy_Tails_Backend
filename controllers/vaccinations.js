@@ -63,4 +63,22 @@ vaccinations.delete('/:id', isAuthenticated, async (req, res) => {
   }
 });
 
+// Delete an All Vaccinations By User ID
+vaccinations.delete('/user/:id', isAuthenticated, async (req, res) => {
+  try {
+    res.json(await Vaccinations.deleteMany({"user_id": req.params.id}));
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
+// Delete an All Vaccinations By Pet ID
+vaccinations.delete('/pet/:id', isAuthenticated, async (req, res) => {
+  try {
+    res.json(await Vaccinations.deleteMany({"pet_id": req.params.id}));
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
 export default vaccinations;
