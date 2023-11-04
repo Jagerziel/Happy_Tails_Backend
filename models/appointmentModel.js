@@ -7,7 +7,6 @@ const AppointmentSchema = new Schema(
     date: { type: String, require: true },
     time: { type: String },
     status: { type: String },
-    notesTitle: { type: String },
     notes: { type: String },
     user_id: {
         type: Schema.Types.ObjectId,
