@@ -53,10 +53,10 @@ pet.delete("/:id", isAuthenticated, async (req, res) => {
   }
 });
 
-// Delete an All Vaccinations By User ID
+// Delete an All Pets By User ID
 pet.delete('/user/:id', isAuthenticated, async (req, res) => {
   try {
-    res.json(await vaccinations.deleteMany({"user_id": req.params.id}));
+    res.json(await Pet.deleteMany({"user_id": req.params.id}));
   } catch (error) {
     res.status(400).json(error);
   }
