@@ -1,6 +1,13 @@
 # Description
-Happy Tails is a mobile application built to put all your pet's medical information in your hands. Through it's intuitive design, users can easily maintain a profile of their pets, track vaccination history, and schedule appointments.
+`"Happy Tails"` is a dedicated veterinary application designed for the local single vet office. This user-friendly app seamlessly integrates modern technology with personalized pet care, offering a range of features to enhance the overall veterinary experience.
 
+**Centralized Medical Records:** Keep all your pet's medical information in one secure place. Happy Tails allows you to effortlessly store vital medical data, including vaccination records and medications. This feature ensures that your pet's health history is easily retrievable whenever needed.
+
+**Online Appointment Booking:** With Happy Tails, booking appointments is a breeze. The intuitive interface allows pet owners to schedule veterinary appointments conveniently from their smartphones. Choose the date and time that suits you best, and receive near-instant confirmation, streamlining the process for both pet owners and the veterinary office.
+
+**Vaccination Reminders:** Automatically receive vaccination reminders from the clinic to ensure your pet stays on track with their prescribed treatments. Never miss a dose and keep your furry friend in optimal health with timely notifications.
+
+**Emergency Information:** Store emergency contact details, veterinary clinic information, and relevant medical information in one easily accessible place.
 `Local Host Port: 4000`
 
 ## Github Repository Links
